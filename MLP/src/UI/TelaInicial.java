@@ -28,7 +28,8 @@ public class TelaInicial extends javax.swing.JFrame {
         botao_informacoes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SD'DST - Tela Inicial");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/TelaInicial"); // NOI18N
+        setTitle(bundle.getString("SD'DST - TELA INICIAL")); // NOI18N
         setResizable(false);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -37,10 +38,10 @@ public class TelaInicial extends javax.swing.JFrame {
         sigla.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("Sistema de Diagnóstico de");
+        jLabel3.setText(bundle.getString("SISTEMA DE DIAGNÓSTICO DE")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Doenças Sexualmente Transmissíveis");
+        jLabel4.setText(bundle.getString("DOENÇAS SEXUALMENTE TRANSMISSÍVEIS")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,8 +74,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
         botao_iniciar.setBackground(new java.awt.Color(153, 180, 209));
         botao_iniciar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        botao_iniciar.setText("Iniciar");
-        botao_iniciar.setToolTipText("Inicia o programa");
+        botao_iniciar.setText(bundle.getString("INICIAR")); // NOI18N
+        botao_iniciar.setToolTipText(bundle.getString("INICIA O PROGRAMA")); // NOI18N
         botao_iniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_iniciarActionPerformed(evt);
@@ -83,8 +84,8 @@ public class TelaInicial extends javax.swing.JFrame {
 
         botao_sair.setBackground(new java.awt.Color(255, 51, 51));
         botao_sair.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        botao_sair.setText("Sair");
-        botao_sair.setToolTipText("Sai do programa");
+        botao_sair.setText(bundle.getString("SAIR")); // NOI18N
+        botao_sair.setToolTipText(bundle.getString("SAI DO PROGRAMA")); // NOI18N
         botao_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_sairActionPerformed(evt);
@@ -93,11 +94,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         unb.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         unb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/images.jpg"))); // NOI18N
-        unb.setText("Universidade de Brasilia");
+        unb.setText(bundle.getString("UNIVERSIDADE DE BRASILIA")); // NOI18N
 
         botao_informacoes.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         botao_informacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/1346704885_Help.png"))); // NOI18N
-        botao_informacoes.setToolTipText("Informações sobre o programa");
+        botao_informacoes.setToolTipText(bundle.getString("INFORMAÇÕES SOBRE O PROGRAMA")); // NOI18N
         botao_informacoes.setBorderPainted(false);
         botao_informacoes.setContentAreaFilled(false);
         botao_informacoes.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +155,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_botao_iniciarActionPerformed
 
     private void botao_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_sairActionPerformed
-        JOptionPane.showMessageDialog(this, "Obrigado por utilizar o SD'DST!");
+        JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("UI/TelaInicial").getString("OBRIGADO POR UTILIZAR O SD'DST!"));
         System.exit(0);
     }//GEN-LAST:event_botao_sairActionPerformed
 
@@ -170,7 +171,7 @@ public class TelaInicial extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if (java.util.ResourceBundle.getBundle("UI/TelaInicial").getString("NIMBUS").equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

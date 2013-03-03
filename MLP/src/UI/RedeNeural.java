@@ -55,62 +55,63 @@ public class RedeNeural extends javax.swing.JFrame {
         unb = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SD'DST");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/RedeNeural"); // NOI18N
+        setTitle(bundle.getString("SD'DST")); // NOI18N
         setResizable(false);
 
         painel_sintomas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel1.setText("Sintomas");
+        jLabel1.setText(bundle.getString("SINTOMAS")); // NOI18N
 
         sintoma_ferida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_ferida.setText("Ferida nos orgãos sexuais");
+        sintoma_ferida.setText(bundle.getString("FERIDA NOS ORGÃOS SEXUAIS")); // NOI18N
 
         sintoma_caroco.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_caroco.setText("Caroços na virilha");
+        sintoma_caroco.setText(bundle.getString("CAROÇOS NA VIRILHA")); // NOI18N
 
         sintoma_mancha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_mancha.setText("Manchas em várias partes do corpo ");
+        sintoma_mancha.setText(bundle.getString("MANCHAS EM VÁRIAS PARTES DO CORPO ")); // NOI18N
 
         sintoma_queda.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_queda.setText("Queda dos cabelos ");
+        sintoma_queda.setText(bundle.getString("QUEDA DOS CABELOS ")); // NOI18N
 
         sintoma_bolha.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_bolha.setText("Bolhas na região genital ");
+        sintoma_bolha.setText(bundle.getString("BOLHAS NA REGIÃO GENITAL ")); // NOI18N
 
         sintoma_coceira.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_coceira.setText("Coceira ");
+        sintoma_coceira.setText(bundle.getString("COCEIRA ")); // NOI18N
 
         sintoma_febre.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_febre.setText("Febre ");
+        sintoma_febre.setText(bundle.getString("FEBRE ")); // NOI18N
 
         sintoma_malEstar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_malEstar.setText("Mal Estar ");
+        sintoma_malEstar.setText(bundle.getString("MAL ESTAR ")); // NOI18N
 
         sintoma_verrugas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_verrugas.setText("Verrugas ");
+        sintoma_verrugas.setText(bundle.getString("VERRUGAS ")); // NOI18N
 
         sintoma_dorSexo.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_dorSexo.setText("Dor na relação sexual ");
+        sintoma_dorSexo.setText(bundle.getString("DOR NA RELAÇÃO SEXUAL ")); // NOI18N
 
         sintoma_dorUrinar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_dorUrinar.setText("Dor ao urinar ");
+        sintoma_dorUrinar.setText(bundle.getString("DOR AO URINAR ")); // NOI18N
 
         sintoma_sangramento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_sangramento.setText("Sangramento fora da menstruação ");
+        sintoma_sangramento.setText(bundle.getString("SANGRAMENTO FORA DA MENSTRUAÇÃO ")); // NOI18N
 
         sintoma_pus.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_pus.setText("Pus ");
+        sintoma_pus.setText(bundle.getString("PUS ")); // NOI18N
 
         sintoma_desconforto.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_desconforto.setText("Desconforto abdominal ");
+        sintoma_desconforto.setText(bundle.getString("DESCONFORTO ABDOMINAL ")); // NOI18N
 
         sintoma_ardor.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        sintoma_ardor.setText("Ardor ");
+        sintoma_ardor.setText(bundle.getString("ARDOR ")); // NOI18N
 
         botao_limpar.setBackground(new java.awt.Color(255, 255, 102));
         botao_limpar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botao_limpar.setText("Limpar");
+        botao_limpar.setText(bundle.getString("LIMPAR")); // NOI18N
         botao_limpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_limparActionPerformed(evt);
@@ -120,7 +121,7 @@ public class RedeNeural extends javax.swing.JFrame {
         botao_processar.setBackground(new java.awt.Color(0, 204, 51));
         botao_processar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botao_processar.setForeground(new java.awt.Color(255, 255, 255));
-        botao_processar.setText("Processar");
+        botao_processar.setText(bundle.getString("PROCESSAR")); // NOI18N
         botao_processar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_processarActionPerformed(evt);
@@ -204,12 +205,12 @@ public class RedeNeural extends javax.swing.JFrame {
         painel_resultados.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel2.setText("Resultados");
+        jLabel2.setText(bundle.getString("RESULTADOS")); // NOI18N
 
         botao_sair.setBackground(new java.awt.Color(255, 51, 51));
         botao_sair.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         botao_sair.setForeground(new java.awt.Color(255, 255, 255));
-        botao_sair.setText("Sair");
+        botao_sair.setText(bundle.getString("SAIR")); // NOI18N
         botao_sair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_sairActionPerformed(evt);
@@ -217,29 +218,29 @@ public class RedeNeural extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("Sifilis");
+        jLabel3.setText(bundle.getString("SIFILIS")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Herpes");
+        jLabel4.setText(bundle.getString("HERPES")); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText("HPV");
+        jLabel5.setText(bundle.getString("HPV")); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel6.setText("Gonorréia");
+        jLabel6.setText(bundle.getString("GONORRÉIA")); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel7.setText("Cancro mole");
+        jLabel7.setText(bundle.getString("CANCRO MOLE")); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel8.setText("DIP");
+        jLabel8.setText(bundle.getString("DIP")); // NOI18N
 
         painel_resultado.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Doença"));
 
         texto_resultado.setEditable(false);
         texto_resultado.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         texto_resultado.setForeground(new java.awt.Color(255, 0, 0));
-        texto_resultado.setText("Nenhuma");
+        texto_resultado.setText(bundle.getString("NENHUMA")); // NOI18N
 
         javax.swing.GroupLayout painel_resultadoLayout = new javax.swing.GroupLayout(painel_resultado);
         painel_resultado.setLayout(painel_resultadoLayout);
@@ -345,7 +346,7 @@ public class RedeNeural extends javax.swing.JFrame {
         );
 
         jLabel9.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 24)); // NOI18N
-        jLabel9.setText("SD'DST - Rede neural");
+        jLabel9.setText(bundle.getString("SD'DST - REDE NEURAL")); // NOI18N
 
         unb.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         unb.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/images.jpg"))); // NOI18N
@@ -386,7 +387,7 @@ public class RedeNeural extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botao_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_sairActionPerformed
-        JOptionPane.showMessageDialog(this, "Obrigado por utilizar o SD'DST!");
+        JOptionPane.showMessageDialog(this, java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("OBRIGADO POR UTILIZAR O SD'DST!"));
         System.exit(0);
     }//GEN-LAST:event_botao_sairActionPerformed
 
@@ -407,14 +408,14 @@ public class RedeNeural extends javax.swing.JFrame {
         sintoma_sangramento.setSelected(false);
         sintoma_verrugas.setSelected(false);
         
-        resultado_cancro.setText("");
-        resultado_dip.setText("");
-        resultado_gonorreia.setText("");
-        resultado_herpes.setText("");
-        resultado_hpv.setText("");
-        resultado_sifilis.setText("");
+        resultado_cancro.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
+        resultado_dip.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
+        resultado_gonorreia.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
+        resultado_herpes.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
+        resultado_hpv.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
+        resultado_sifilis.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString(""));
         
-        texto_resultado.setText("Nenhuma");
+        texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("NENHUMA"));
     }//GEN-LAST:event_botao_limparActionPerformed
 
     private void botao_processarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_processarActionPerformed
@@ -524,25 +525,25 @@ public class RedeNeural extends javax.swing.JFrame {
 
         switch (maiorValor(m)) {
             case 0:
-                texto_resultado.setText("Sifilis");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("SIFILIS"));
                 break;
             case 1:
-                texto_resultado.setText("Herpes");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("HERPES"));
                 break;
             case 2:
-                texto_resultado.setText("HPV");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("HPV"));
                 break;
             case 3:
-                texto_resultado.setText("Gonorréia");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("GONORRÉIA"));
                 break;
             case 4:
-                texto_resultado.setText("Cancro Mole");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("CANCRO MOLE"));
                 break;
             case 5:
-                texto_resultado.setText("DIP");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("DIP"));
                 break;
             default:
-                texto_resultado.setText("Houston, we have a problem.");
+                texto_resultado.setText(java.util.ResourceBundle.getBundle("UI/RedeNeural").getString("HOUSTON, WE HAVE A PROBLEM."));
                 break;
         }
     }

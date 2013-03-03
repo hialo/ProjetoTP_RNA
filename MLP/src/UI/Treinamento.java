@@ -33,22 +33,23 @@ public class Treinamento extends javax.swing.JFrame {
         combo_funcao = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("SD'DST - Treinamento");
+        java.util.ResourceBundle bundle = java.util.ResourceBundle.getBundle("UI/Treinamento"); // NOI18N
+        setTitle(bundle.getString("SD'DST - TREINAMENTO")); // NOI18N
         setResizable(false);
 
         titulo.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        titulo.setText("Treinamento");
+        titulo.setText(bundle.getString("TREINAMENTO")); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel2.setText("Taxa de Aprendizado:");
+        jLabel2.setText(bundle.getString("TAXA DE APRENDIZADO:")); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel3.setText("Momento:");
+        jLabel3.setText(bundle.getString("MOMENTO:")); // NOI18N
 
         botao_treinar.setBackground(new java.awt.Color(153, 180, 209));
         botao_treinar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botao_treinar.setText("Treinar");
-        botao_treinar.setToolTipText("Inicia o treinamento da rede");
+        botao_treinar.setText(bundle.getString("TREINAR")); // NOI18N
+        botao_treinar.setToolTipText(bundle.getString("INICIA O TREINAMENTO DA REDE")); // NOI18N
         botao_treinar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_treinarActionPerformed(evt);
@@ -57,8 +58,8 @@ public class Treinamento extends javax.swing.JFrame {
 
         botao_usarRede.setBackground(new java.awt.Color(255, 0, 0));
         botao_usarRede.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
-        botao_usarRede.setText("Usar rede");
-        botao_usarRede.setToolTipText("Utilizar a rede após treina-la");
+        botao_usarRede.setText(bundle.getString("USAR REDE")); // NOI18N
+        botao_usarRede.setToolTipText(bundle.getString("UTILIZAR A REDE APÓS TREINA-LA")); // NOI18N
         botao_usarRede.setEnabled(false);
         botao_usarRede.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,26 +68,26 @@ public class Treinamento extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel1.setText("Erro minimo               :");
+        jLabel1.setText(bundle.getString("ERRO MINIMO               :")); // NOI18N
 
         text_numero_epocas.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        text_numero_epocas.setText("0.002");
+        text_numero_epocas.setText(bundle.getString("0.002")); // NOI18N
 
         text_taxa_aprendizado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        text_taxa_aprendizado.setText("0.005");
+        text_taxa_aprendizado.setText(bundle.getString("0.005")); // NOI18N
 
         text_momento.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        text_momento.setText("0.995");
+        text_momento.setText(bundle.getString("0.995")); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel4.setText("Função");
+        jLabel4.setText(bundle.getString("FUNÇÃO")); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jLabel5.setText("Para usar a rede é necessário treina-la primeiro!");
+        jLabel5.setText(bundle.getString("PARA USAR A REDE É NECESSÁRIO TREINA-LA PRIMEIRO!")); // NOI18N
 
         combo_funcao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         combo_funcao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sigmóide", "Tangente Hiperbólica" }));
-        combo_funcao.setToolTipText("Função de transferência");
+        combo_funcao.setToolTipText(bundle.getString("FUNÇÃO DE TRANSFERÊNCIA")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,7 +168,7 @@ public class Treinamento extends javax.swing.JFrame {
         double minimumError = Double.parseDouble(text_numero_epocas.getText());
         
         if (learningRate < 0 || learningRate > 1 || moment < 0 || moment > 1 || minimumError < 0) {
-            JOptionPane.showMessageDialog(null, "Entradas inválidas.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, java.util.ResourceBundle.getBundle("UI/Treinamento").getString("ENTRADAS INVÁLIDAS."), java.util.ResourceBundle.getBundle("UI/Treinamento").getString("ERRO"), JOptionPane.ERROR_MESSAGE);
         } 
         
         else {
