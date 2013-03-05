@@ -1,8 +1,8 @@
 package Service;
 
     /**
-    * File: ActivationFunction.java
-    * Purpose: An interface who has the activation function of the network.
+    * File: ActivationFunction.java <br>
+    * Purpose: An interface who has the activation function of the network.<br>
     * @author Hialo
     * @version 1.0
     */

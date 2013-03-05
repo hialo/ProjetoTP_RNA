@@ -1,11 +1,10 @@
 package Service;
 
 /**
-* File: SigmoidFunction.java
-* Purpose: This class implements the sigmoid activation function, and it's derivative.
+* File: SigmoidFunction.java <br>
+* Purpose: This class implements the sigmoid activation function, and it's derivative. <br>
 * @author Hialo
 * @version 1.0
-* x - The parameter of the sigmoid function. 
 */
 
 public class SigmoidFunction implements ActivationFunction {

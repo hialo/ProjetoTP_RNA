@@ -1,11 +1,10 @@
 package Service;
 
 /**
-* File: HyperbolicTangentFunction.java
-* Purpose: This class implements the hyperbolic tangent activation function, and it's derivative.
+* File: HyperbolicTangentFunction.java <br>
+* Purpose: This class implements the hyperbolic tangent activation function, and it's derivative. <br>
 * @author Hialo
 * @version 1.0
-* x - The parameter of the hyperbolic tangent function. 
 */
 
 public class HyperbolicTangentFunction implements ActivationFunction {

@@ -3,17 +3,18 @@ package Model;
 import java.util.Random;
 
     /**
-    * File: Neuron.java
-    * Purpose: Create the neurons who will be a part of the MLP.
+    * File: Neuron.java <br>
+    * Purpose: Create the neurons who will be a part of the MLP. <br>
     * @author Hialo
     * @version 1.0
-    * weights - A double vector who receives randomic values for it's weights.
-    * bias - A double value who is utilized for modify the weights of the ANN.
-    * deltaw - A double vector who receives the connections of the ANN.
-    * deltabias - A double vector who receives the modifications of the bias.
     */
 
 public class Neuron {
+    
+    /* weights - A double vector who receives randomic values for it's weights.
+    * bias - A double value who is utilized for modify the weights of the ANN.
+    * deltaw - A double vector who receives the connections of the ANN.
+    * deltabias - A double vector who receives the modifications of the bias.*/
 
     private double[] weights = null;
     private double bias = 0;

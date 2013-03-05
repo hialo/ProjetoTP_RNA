@@ -2,15 +2,16 @@ package Persistence;
 
 import Model.MLP;
 
-public class STDNetwork {
-    
     /**
     * File: STDNetwork.java <br>
     * Purpose: Create the MLP used by the application. <br>
     * @author Hialo <br>
     * @version 1.0 <br>
-    * dst - A static MLP object who implemets the neural network. <br>
     */
+
+public class STDNetwork {
+    
+    /* dst - A static MLP object who implemets the neural network. */
     
     public static MLP dst;
     

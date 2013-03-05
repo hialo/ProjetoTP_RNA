@@ -1,18 +1,22 @@
 package Model;
 
-public class MLP {
-
     /**
-     * File: MLP.java Purpose: Create the MLP itself, using the created layers,
-     * test inputs and outputs.
+     * File: MLP.java <br>
+     * Purpose: Create the MLP itself, using the created layers,
+     * test inputs and outputs. <br>
      *
      * @author Hialo
-     * @version 1.0 layers - A vector of objects of type Layer. Receives the
-     * quantity of the layers of the network. lastLayer - A integer who has the
-     * value of the last layer of the network. learningRate - A integer which is
-     * selected to ensure thate the wights will converge fast enough, without
-     * oscillations. moment
+     * @version 1.0 
      */
+
+public class MLP {
+
+    /* layers - A vector of objects of type Layer. Receives the quantity of the layers of the network.
+     * lastLayer - A integer who has the value of the last layer of the network.
+     * learningRate - A integer which is selected to ensure thate the wights will converge fast enough, without
+     * oscillations.
+     * moment - */
+    
     private Layer[] layers;
     private int lastLayer = -1;
     private double learningRate = 0.2;

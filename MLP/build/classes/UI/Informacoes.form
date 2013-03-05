@@ -57,7 +57,7 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Universidade de Bras&#xed;lia - FGA&#xa;Faculdade do Gama&#xa;&#xa;T&#xe9;cnicas de Programa&#xe7;&#xe3;o&#xa;&#xa;Professor: Maur&#xed;cio&#xa;&#xa;&#xa;"/>
+            <Property name="text" type="java.lang.String" value="Universidade de Bras&#xed;lia - FGA&#xa;Faculdade do Gama&#xa;&#xa;Intelig&#xea;ncia Artificial&#xa;Professora: Dra. Lourdes Brasil&#xa;&#xa;Alunos:&#xa;Tiago Gomes Pereira..........09/0134222&#xa;Guilherme de Lima............09/0115350&#xa;Carlos Filipe Lima Bezerra...09/0137485&#xa;Hialo Muniz Carvalho.........09/0116402&#xa;Tallys Gustavo Martins.......10/0020852&#xa;&#xa;&#xa;"/>
           </Properties>
         </Component>
       </SubComponents>

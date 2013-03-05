@@ -6,8 +6,23 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.JOptionPane;
 
+    /**
+    * File: Training.java <br>
+    * Purpose: This class realizes the execution of the network, training it and make it able to be used.<br>
+    * @author Hialo
+    * @version 1.0 
+    */
+
 public class Training {
 
+    /** This function realizes the execution of the network, making it able to use.
+     * 
+     * @param function The function used to the training.
+     * @param learningRate The learning rate used for the training
+     * @param moment The moment used for the training.
+     * @param minimumError The minimum error used for the training.
+     */
+    
     public static void training_network(int function, double learningRate, double moment, double minimumError) {
 
         new STDNetwork(function);
@@ -44,13 +59,13 @@ public class Training {
 
             if (cycles == 0) {
                 try {
-                    DataManipulation.escrever(dir, arq, cycles + 1 + " " + error, false);
+                    DataManipulation.write(dir, arq, cycles + 1 + " " + error, false);
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
             } else {
                 try {
-                    DataManipulation.escrever(dir, arq, cycles + 1 + " " + error, true);
+                    DataManipulation.write(dir, arq, cycles + 1 + " " + error, true);
                 } catch (IOException e) {
                     JOptionPane.showMessageDialog(null, e.toString(), "Erro", JOptionPane.ERROR_MESSAGE);
                 }
