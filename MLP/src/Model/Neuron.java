@@ -21,11 +21,10 @@ public class Neuron {
     private double[] deltaw = null;
     private double deltaBias = 0;
 
-    public Neuron(int conexoes) {
+    Neuron(int conexoes) {
         weights = new double[conexoes];
         deltaw = new double[conexoes];
-        
-        /* Loop to put all the deltaw of the connections = 0. */
+
         for (int i = 0; i < deltaw.length; i++) {
             deltaw[i] = 0;
         }
@@ -54,8 +53,6 @@ public class Neuron {
      */
     
     void initializeWeigths() {
-        
-        /* Loop to give random values to the weights of the neurons, to be corrected on the training. */
         for (int i = 0; i < weights.length; i++) {
             weights[i] = Math.random(); //
                     //(Math.random() - 0.5) * 2;
@@ -63,7 +60,6 @@ public class Neuron {
         bias = Math.random();
     }
 
-    /* Getters and setters. */
     final double getDeltaw(int i) {
         return deltaw[i];
     }

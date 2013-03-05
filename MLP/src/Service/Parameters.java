@@ -98,7 +98,7 @@ public class Parameters {
         {0, 0, 0, 0, 0, 1}};
     
     
-    /*public static void writeArq(double[][] test_inputs, double[][] expected_outputs)throws IOException {
+    public static void writeArq(double[][] test_inputs, double[][] expected_outputs)throws IOException {
         //cria o diretório
         File dir = new File("C:\\parametro");
         if (!dir.exists()) {
@@ -148,5 +148,5 @@ public class Parameters {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 }

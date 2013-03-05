@@ -68,7 +68,6 @@ public class Layer {
     private double net(int neuron, double[] input) {
         double u = 0;
 
-        /* Loop to adjust the weight of the neurons according to the inputs. */
         for (int i = 0; i < input.length; i++) {
             u += input[i] * neurons[neuron].getWeight(i);
         }
@@ -76,12 +75,7 @@ public class Layer {
         return u;
     }
 
-    /**
-     * Function to compute the outputs calculated by the net function.
-     * @param input Inputs of the network.
-     */
     void compute(double[] input) {
-        
         for (int i = 0; i < neurons.length; i++) {
             outputs[i] = function.function(net(i, input));
         }
