@@ -24,10 +24,39 @@ public class Neuron {
         weights = new double[conexoes];
         deltaw = new double[conexoes];
 
-        //Iniciando com zeros
         for (int i = 0; i < deltaw.length; i++) {
             deltaw[i] = 0;
         }
+    }
+    
+    /** Weight correction function used on the training of the network.
+     * 
+     * @param i The position of the neuron on the vector of neurons.
+     * @param delta Correction parameter.
+     */
+
+    public final void correctWeight(int i, double delta) {
+        weights[i] += delta;
+    }
+
+    /** Bias correction function.
+     * 
+     * @param delta Correction parameter.
+     */
+    public final void correctBias(double delta) {
+        bias += delta;
+    }
+    
+    /** Function used for initialize the weights.
+     * 
+     */
+    
+    void initializeWeigths() {
+        for (int i = 0; i < weights.length; i++) {
+            weights[i] = Math.random(); //
+                    //(Math.random() - 0.5) * 2;
+        }
+        bias = Math.random();
     }
 
     final double getDeltaw(int i) {
@@ -47,7 +76,7 @@ public class Neuron {
     }
 
     //Retorna a quantidade de pesos
-    public int getTamanho() {
+    public int getWeightLength() {
         return weights.length;
     }
 
@@ -68,11 +97,11 @@ public class Neuron {
         return b.toString();
     }
 
-    public final double getPeso(int i) {
+    public final double getWeight(int i) {
         return weights[i];
     }
 
-    final void setPeso(int i, double w) {
+    final void setWeight(int i, double w) {
         weights[i] = w;
     }
 
@@ -82,25 +111,5 @@ public class Neuron {
 
     final void setBias(double b) {
         bias = b;
-    }
-
-    //Funções de correção durante o treinamento
-    public final void corrigirPeso(int i, double delta) {
-        weights[i] += delta;
-    }
-
-    public final void corrigirBias(double delta) {
-        bias += delta;
-    }
-    
-    //Inicializa os pesos com valores randomicos (o bias tbm)
-    //Random rd = new Random();
-
-    void inicializarPesos() {
-        for (int i = 0; i < weights.length; i++) {
-            weights[i] = Math.random(); //
-                    //(Math.random() - 0.5) * 2;
-        }
-        bias = Math.random();
     }
 }

@@ -1,69 +1,216 @@
 package Model;
 
 public class MLP {
-    
+
     /**
-    * File: MLP.java
-    * Purpose: Create the MLP itself, using the created layers, test inputs and outputs.
-    * @author Hialo
-    * @version 1.0
-    * layers - A vector of objects of type Layer. Receives the quantity of the layers of the network.
-    * lastLayer - A integer who has the value of the last layer of the network.
-    * learningRate - A integer which is selected to ensure thate the wights will converge fast enough, without oscillations.
-    * moment
-    */
-    
+     * File: MLP.java Purpose: Create the MLP itself, using the created layers,
+     * test inputs and outputs.
+     *
+     * @author Hialo
+     * @version 1.0 layers - A vector of objects of type Layer. Receives the
+     * quantity of the layers of the network. lastLayer - A integer who has the
+     * value of the last layer of the network. learningRate - A integer which is
+     * selected to ensure thate the wights will converge fast enough, without
+     * oscillations. moment
+     */
     private Layer[] layers;
     private int lastLayer = -1;
-    private double learningRate = 0.2; 
+    private double learningRate = 0.2;
     private double moment = 0.8;
 
-    /** MLP constructor.
+    /**
+     * MLP constructor.
+     *
      * @param layers Number of layers of the MLP.
      */
-    public MLP(int camadas) {
-        this.layers = new Layer[camadas];
+    public MLP(int layers) {
+        this.layers = new Layer[layers];
     }
 
-    /** Add the first layer of the MLP.
-     * @param neuronios numero de neuronios na camada
-     * @param conexoes numero de entradas em cada neuronio
+    /**
+     * Add the first layer of the MLP.
+     *
+     * @param neurons Number of neurons on the layer.
+     * @param connections Number of inputs/connections in each neuron.
      */
-    public void adicionarPrimeiraCamada(int neuronios, int conexoes, int funcao) {
-        layers[0] = new Layer(neuronios, conexoes, funcao);
+    public void addFirstLayer(int neurons, int connections, int function) {
+        layers[0] = new Layer(neurons, connections, function);
         lastLayer = 0;
     }
 
-    public void adicionarCamada(int neuronios, int funcao) {
-        layers[lastLayer + 1] = new Layer(neuronios, layers[lastLayer].getTamanho(), funcao);
+    /**
+     * Add new layers on the netowrk. The standart number of layers is 3.
+     *
+     * @param neurons Number of neurons on the layer.
+     * @param function Function used (sigmoid or hyperbolic tangent).
+     */
+    public void addLayer(int neurons, int function) {
+        layers[lastLayer + 1] = new Layer(neurons, layers[lastLayer].getLength(), function);
         lastLayer++;
     }
 
     /**
      * Forward
      *
-     * @param input entrada da rede
+     * @param input Inputs of the network.
      */
-    public void processar(double[] entrada) {
+    public void processing(double[] inputs) {
         for (int i = 0; i < layers.length; i++) {
-            layers[i].computar(entrada);
+            layers[i].compute(inputs);
 
-            entrada = layers[i].getSaida();
+            inputs = layers[i].getOutputs();
+        }
+    }
+
+    /**
+     * Backpropagation algorithm to train the network.
+     *
+     * @param inputs Inputs of the network.
+     * @param outputs Selected output of the network.
+     */
+    public void backpropagation(double[] inputs, double[] outputs) {
+
+        computeLastLayerErrors(outputs);
+        computeHiddenLayersErrors();
+        computeDeltas(inputs);
+
+        HandleCorrections();
+
+    }
+
+    /**
+     * Method who realize the training of the network using the backpropagation
+     * algorithm.
+     *
+     * @param inputs Inputs of the network.
+     * @param outputs Selected outputs of the network.
+     * @return computingFinalErrors (inputs, outputs)
+     */
+    public double training(double[] inputs, double[] outputs) {
+
+        processing(inputs);
+        backpropagation(inputs, outputs);
+
+        return computingFinalErrors(inputs, outputs);
+    }
+
+    /**
+     * Method who compute the errors of the last layer, the output layer.
+     *
+     * @param outputs Outputs of the layer.
+     */
+    private void computeLastLayerErrors(double[] outputs) {
+
+        double error = 0;
+        Layer l = layers[lastLayer];
+
+        int tamanho = l.getLength();
+
+        for (int i = 0; i < tamanho; i++) {
+            error = (outputs[i] - l.getOutputs(i)) * layers[lastLayer].getFunction().derivative(l.getOutputs(i));
+            l.setError(i, error);
+        }
+    }
+
+    /**
+     * Compute the errors of the hidden layers, or the internal layers.
+     *
+     */
+    private void computeHiddenLayersErrors() {
+        double error;
+
+        for (int i = layers.length - 2; i >= 0; i--) // Layer por camada 
+        {
+            for (int j = 0; j < layers[i].getLength(); j++) { // Neuron por neuronio
+                error = 0;
+                // Neuron por neuronio na proxima camada
+                for (int k = 0; k < layers[i + 1].getLength(); k++) {
+                    error += layers[i + 1].getError(k) * layers[i + 1].getNeuron(k).getWeight(j);
+                }
+
+                error *= layers[i].getFunction().derivative(getLayer(i).getOutputs(j));
+                layers[i].setError(j, error);
+            }
+        }
+    }
+
+    /**
+     * Compute the deltas used on the training of the network.
+     *
+     * @param inputs Inputs of the network.
+     */
+    private void computeDeltas(double[] inputs) {
+        int i, j, k;
+
+        for (i = 0; i < layers.length; i++) { // Layer by Layer
+            for (j = 0; j < layers[i].getLength(); j++) { // Neuron by Neuron
+                for (k = 0; k < layers[i].getNeuron(j).getWeightLength(); k++) { // Weight by Weight
+                    layers[i].getNeuron(j).setDeltaw(k, learningRate * inputs[k] * layers[i].getError(j)
+                            + moment * layers[i].getNeuron(j).getDeltaw(k));
+                }
+                layers[i].getNeuron(j).setDeltaBias(learningRate * (-1) * layers[i].getError(j) + moment * layers[i].getNeuron(j).getDeltaBias());
+            }
+            inputs = layers[i].getOutputs();
+        }
+    }
+
+    /**
+     * Handle the corrections made on the network during the training.
+     *
+     */
+    private void HandleCorrections() {
+        int i, j, k;
+
+        for (i = 0; i < layers.length; i++) {
+            for (j = 0; j < layers[i].getLength(); j++) {
+                Neuron n = layers[i].getNeuron(j);
+
+                for (k = 0; k < n.getWeightLength(); k++) {
+                    n.correctWeight(k, layers[i].getNeuron(j).getDeltaw(k));
+                }
+                n.correctBias(layers[i].getNeuron(j).getDeltaBias());
+            }
+        }
+    }
+
+    /**
+     * Compute the final errors of the network.
+     *
+     * @param inputs Inputs of the network.
+     * @param outputs Selected outputs of the network.
+     * @return error The final error calculated on the network.
+     */
+    private double computingFinalErrors(double[] inputs, double[] outputs) {
+        processing(inputs);
+
+        double error = 0;
+
+        Layer l = layers[lastLayer];
+
+        int tamanho = l.getLength();
+
+        for (int i = 0; i < tamanho; i++) {
+            error = (outputs[i] - l.getOutputs(i));
+        }
+        if (error < 0) {
+            return error * (-1);
+        } else {
+            return error;
         }
     }
 
     //Retorna a saida de um neuronio especifico na camada de saida
-    public double getSaida(int neuronio) {
-        return layers[lastLayer].getSaida(neuronio);
+    public double getOutput(int neuron) {
+        return layers[lastLayer].getOutputs(neuron);
     }
 
     //Retorna o numero de saidas
-    public int getTamanhoDaSaida() {
-        return layers[lastLayer].getTamanho();
+    public int getOutputLength() {
+        return layers[lastLayer].getLength();
     }
 
     //Retorna o numero de camadas da MLP
-    public int getTamanho() {
+    public int getLength() {
         return layers.length;
     }
 
@@ -73,130 +220,28 @@ public class MLP {
     }
 
     //Retorna uma camada especifica
-    public Layer getCamada(int i) {
+    public Layer getLayer(int i) {
         return layers[i];
     }
 
     //Retorna a ultima camada
-    public Layer getUltimaCamada() {
+    public Layer getLastLayer() {
         return layers[lastLayer];
     }
 
-    public void setEta(double eta) {
-        this.learningRate = eta;
+    public void setLearningRate(double learningRate) {
+        this.learningRate = learningRate;
     }
 
-    public double getEta() {
+    public double getLearningRate() {
         return learningRate;
     }
 
-    public void setAlpha(double alpha) {
-        this.moment = alpha;
+    public void setMoment(double moment) {
+        this.moment = moment;
     }
 
-    public double getAlpha() {
+    public double getMoment() {
         return moment;
-    }
-
-    //Retropropagacao dos erros
-    public void retropropagacao(double[] entrada, double[] saidaDesejada) {
-
-        computarErrosDaUltimaCamada(saidaDesejada);
-        computarErrosDasCamadasOcultas();
-        computarDeltas(entrada);
-
-        aplicarCorrecoes();
-
-    }
-
-    //Treinar rede
-    public double treinar(double[] entrada, double[] saidaDesejada) {
-
-        processar(entrada);
-        retropropagacao(entrada, saidaDesejada);
-
-        return computarErroFinal(entrada, saidaDesejada);
-    }
-
-    //Computa os erros da camada de saida
-    private void computarErrosDaUltimaCamada(double[] saidaDesejada) {
-
-        double erro = 0;
-        Layer l = layers[lastLayer];
-
-        int tamanho = l.getTamanho();
-
-        for (int i = 0; i < tamanho; i++) {
-            erro = (saidaDesejada[i] - l.getSaida(i)) * layers[lastLayer].getFuncao().derivative(l.getSaida(i));
-            l.setErro(i, erro);
-        }
-    }
-
-    //Computa erros das camadas internas
-    private void computarErrosDasCamadasOcultas() {
-        double error;
-
-        for (int i = layers.length - 2; i >= 0; i--) // Layer por camada 
-        {
-            for (int j = 0; j < layers[i].getTamanho(); j++) { // Neuron por neuronio
-                error = 0;
-                // Neuron por neuronio na proxima camada
-                for (int k = 0; k < layers[i + 1].getTamanho(); k++) {
-                    error += layers[i + 1].getErro(k) * layers[i + 1].getNeuronio(k).getPeso(j);
-                }
-
-                error *= layers[i].getFuncao().derivative(getCamada(i).getSaida(j));
-                layers[i].setErro(j, error);
-            }
-        }
-    }
-
-    private void computarDeltas(double[] entrada) {
-        int i, j, k;
-
-        for (i = 0; i < layers.length; i++) { // Layer by Layer
-            for (j = 0; j < layers[i].getTamanho(); j++) { // Neuron by Neuron
-                for (k = 0; k < layers[i].getNeuronio(j).getTamanho(); k++) { // Weight by Weight
-                    layers[i].getNeuronio(j).setDeltaw(k, learningRate * entrada[k] * layers[i].getErro(j) + 
-                            moment * layers[i].getNeuronio(j).getDeltaw(k));
-                }
-                layers[i].getNeuronio(j).setDeltaBias(learningRate * (-1) * layers[i].getErro(j) + moment * layers[i].getNeuronio(j).getDeltaBias());
-            }
-            entrada = layers[i].getSaida();
-        }
-    }
-
-    private void aplicarCorrecoes() {
-        int i, j, k;
-
-        for (i = 0; i < layers.length; i++) {
-            for (j = 0; j < layers[i].getTamanho(); j++) {
-                Neuron n = layers[i].getNeuronio(j);
-
-                for (k = 0; k < n.getTamanho(); k++) {
-                    n.corrigirPeso(k, layers[i].getNeuronio(j).getDeltaw(k));
-                }
-                n.corrigirBias(layers[i].getNeuronio(j).getDeltaBias());
-            }
-        }
-    }
-
-    private double computarErroFinal(double[] entrada, double[] saidaDesejada) {
-        processar(entrada);
-
-        double erro = 0;
-
-        Layer l = layers[lastLayer];
-
-        int tamanho = l.getTamanho();
-
-        for (int i = 0; i < tamanho; i++) {
-            erro = (saidaDesejada[i] - l.getSaida(i));
-        }
-        if (erro < 0) {
-            return erro * (-1);
-        } else {
-            return erro;
-        }
     }
 }

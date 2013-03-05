@@ -420,7 +420,7 @@ public class RedeNeural extends javax.swing.JFrame {
 
     private void botao_processarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_processarActionPerformed
 
-        STDNetwork.dst.processar(getEntrada());
+        STDNetwork.dst.processing(getEntrada());
         processarSaida(STDNetwork.dst);
     }//GEN-LAST:event_botao_processarActionPerformed
     
@@ -516,12 +516,12 @@ public class RedeNeural extends javax.swing.JFrame {
     }
 
     private void processarSaida(MLP m) {
-        resultado_cancro.setValue(m.getSaida(4));
-        resultado_dip.setValue(m.getSaida(5));
-        resultado_gonorreia.setValue(m.getSaida(3));
-        resultado_herpes.setValue(m.getSaida(1));
-        resultado_hpv.setValue(m.getSaida(2));
-        resultado_sifilis.setValue(m.getSaida(0));
+        resultado_cancro.setValue(m.getOutput(4));
+        resultado_dip.setValue(m.getOutput(5));
+        resultado_gonorreia.setValue(m.getOutput(3));
+        resultado_herpes.setValue(m.getOutput(1));
+        resultado_hpv.setValue(m.getOutput(2));
+        resultado_sifilis.setValue(m.getOutput(0));
 
         switch (maiorValor(m)) {
             case 0:
@@ -551,9 +551,9 @@ public class RedeNeural extends javax.swing.JFrame {
     private int maiorValor(MLP m) {
         int maiorValor = 0;
         double aux = 0;
-        for (int i = 0; i < m.getTamanhoDaSaida(); i++) {
-            if (m.getSaida(i) > aux) {
-                aux = m.getSaida(i);
+        for (int i = 0; i < m.getOutputLength(); i++) {
+            if (m.getOutput(i) > aux) {
+                aux = m.getOutput(i);
                 maiorValor = i;
             }
         }

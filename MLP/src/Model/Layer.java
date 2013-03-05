@@ -4,18 +4,22 @@ import Service.SigmoidFunction;
 import Service.HyperbolicTangentFunction;
 import Service.ActivationFunction;
 
-public class Layer {
-   
     /**
-    * File: Layer.java
-    * Purpose: Create the layers of the MLP, using the activation function chosen by the user.
-    * @author Hialo
-    * @version 1.0
-    * neurons - A vector of objects of Neuron type.
-    * output - A double vector who receives the answer of the MLP.
-    * function - A object who has the type of the activate function (Hyperbolic Tangent or Sigmoid).
-    * errors - A double vector who receives the errors of the training of the neural network.
-    */
+     * File: Layer.java <br> 
+     * Purpose: Create the layers of the MLP, using the
+     * activation function chosen by the user. <br>
+     *
+     * @author Hialo
+     * @version 1.0 
+     */
+
+public class Layer {
+    
+     /* neurons - A vector of objects of Neuron type. 
+     *  output - A double vector who receives the answer of the MLP.
+     *  function - A object who has the type of the activate function (Hyperbolic Tangent or Sigmoid). 
+     *  errors - A double vector who receives the errors of the training of the
+     *  neural network. */
 
     private Neuron[] neurons;
     private double[] outputs;
@@ -24,24 +28,26 @@ public class Layer {
 
     /**
      * Layer constructor.
-     * @param qtd_neuronios Quantity of neurons used in the layer.
-     * @param conexoes Number of connections per neuron.
-     * @param funcao Activation function used.
+     *
+     * @param number_of_neurons Quantity of neurons used in the layer.
+     * @param connections Number of connections per neuron.
+     * @param function Activation function used.
      */
-    
-    public Layer(int qtd_neuronios, int conexoes, int funcao) {
-        
-        neurons = new Neuron[qtd_neuronios];
-        outputs = new double[qtd_neuronios];
-        errors = new double[qtd_neuronios];
+    public Layer(int number_of_neurons, int connections, int function) {
 
+        neurons = new Neuron[number_of_neurons];
+        outputs = new double[number_of_neurons];
+        errors = new double[number_of_neurons];
+
+        /* Initialize the neurons with their respective weights. */
         for (int i = 0; i < neurons.length; i++) {
-            neurons[i] = new Neuron(conexoes);
-            neurons[i].inicializarPesos();
+            neurons[i] = new Neuron(connections);
+            neurons[i].initializeWeigths();
             errors[i] = 0;
         }
-        
-        switch (funcao) {
+
+        /* Choose which function will be used. */
+        switch (function) {
             case 0:
                 this.function = new SigmoidFunction();
                 break;
@@ -52,21 +58,43 @@ public class Layer {
 
     }
 
-    public void setErro(int i, double valor) {
-        errors[i] = valor;
+    /**
+     * Routine who calcules the outputs using the inputs and the weights of the
+     * neurons.
+     *
+     * @param neuron Neuron of the network.
+     * @param input A vector with the inputs of the network.
+     */
+    private double net(int neuron, double[] input) {
+        double u = 0;
+
+        for (int i = 0; i < input.length; i++) {
+            u += input[i] * neurons[neuron].getWeight(i);
+        }
+        u -= neurons[neuron].getBias();
+        return u;
     }
 
-    public double getErro(int i) {
-        return errors[i];
-    }
-
-    void computar(double[] input) {
+    void compute(double[] input) {
         for (int i = 0; i < neurons.length; i++) {
             outputs[i] = function.function(net(i, input));
         }
     }
 
-    public int getTamanho() {
+    public ActivationFunction getFunction() {
+        return function;
+    }
+
+    /* Getters and setters. */
+    public void setError(int i, double value) {
+        errors[i] = value;
+    }
+
+    public double getError(int i) {
+        return errors[i];
+    }
+
+    public int getLength() {
         return neurons.length;
     }
 
@@ -75,33 +103,19 @@ public class Layer {
         return getClass().getName() + "[" + neurons.length + "]";
     }
 
-    public final double getSaida(int i) {
+    public final double getOutputs(int i) {
         return outputs[i];
     }
 
-    public final double[] getSaida() {
+    public final double[] getOutputs() {
         return outputs;
     }
 
-    public final Neuron getNeuronio(int i) {
+    public final Neuron getNeuron(int i) {
         return neurons[i];
     }
 
-    final public int getTamanhoNeuronio() {
-        return neurons[0].getTamanho();
-    }
-
-    private double net(int neuronio, double[] entrada) {
-        double u = 0;
-
-        for (int i = 0; i < entrada.length; i++) {
-            u += entrada[i] * neurons[neuronio].getPeso(i);
-        }
-        u -= neurons[neuronio].getBias();
-        return u;
-    }
-
-    public ActivationFunction getFuncao() {
-        return function;
+    final public int getNeuronLength() {
+        return neurons[0].getWeightLength();
     }
 }

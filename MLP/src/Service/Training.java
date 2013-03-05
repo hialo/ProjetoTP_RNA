@@ -28,8 +28,8 @@ public class Training {
             }
         }
 
-        STDNetwork.dst.setEta(learningRate);
-        STDNetwork.dst.setAlpha(moment);
+        STDNetwork.dst.setLearningRate(learningRate);
+        STDNetwork.dst.setMoment(moment);
 
         int cycles = 0;
         double error = 0;
@@ -38,7 +38,7 @@ public class Training {
         while (aux > minimumError) {
 
             for (int j = 0; j < Parameters.test_inputs.length; j++) {
-                error += STDNetwork.dst.treinar(Parameters.test_inputs[j], Parameters.expected_outputs[j]);
+                error += STDNetwork.dst.training(Parameters.test_inputs[j], Parameters.expected_outputs[j]);
             }
             error = error / Parameters.test_inputs.length;
 

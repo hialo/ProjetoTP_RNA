@@ -22,7 +22,7 @@ public class Informacoes extends javax.swing.JFrame {
         jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Universidade de Brasília - FGA\nFaculdade do Gama\n\nTécnicas de Programação\n\nProfessor: Maurício\n\n\n");
+        jTextArea1.setText("Universidade de Brasília - FGA\nFaculdade do Gama\n\nInteligência Artificial\nProfessora: Dra. Lourdes Brasil\n\nAlunos:\nTiago Gomes Pereira..........09/0134222\nGuilherme de Lima............09/0115350\nCarlos Filipe Lima Bezerra...09/0137485\nHialo Muniz Carvalho.........09/0116402\nTallys Gustavo Martins.......10/0020852\n\n\n");
         jScrollPane1.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

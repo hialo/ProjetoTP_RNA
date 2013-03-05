@@ -3,8 +3,8 @@ package Service;
 import java.io.*;
 
     /**
-    * File: DataManipulation.java
-    * Purpose: This class has the methods who makes the data manipulation of the system (read/write files).
+    * File: DataManipulation.java <br>
+    * Purpose: This class has the methods who makes the data manipulation of the system (read/write files).<br>
     * @author Hialo
     * @version 1.0
     */
