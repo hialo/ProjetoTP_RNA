@@ -9,6 +9,6 @@ package Service;
 
 public interface ActivationFunction {
 
-    public  double function(double x);
-    public  double derivative(double x);
+    public double function(double x);
+    public double derivative(double x);
 }

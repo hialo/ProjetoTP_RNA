@@ -59,6 +59,7 @@ public class MLP {
      * @param input Inputs of the network.
      */
     public void processing(double[] inputs) {
+        /* Loop to use the outputs of a layer as inputs to another layer. */ 
         for (int i = 0; i < layers.length; i++) {
             layers[i].compute(inputs);
 
@@ -78,7 +79,7 @@ public class MLP {
         computeHiddenLayersErrors();
         computeDeltas(inputs);
 
-        HandleCorrections();
+        handleCorrections();
 
     }
 
@@ -109,7 +110,8 @@ public class MLP {
         Layer l = layers[lastLayer];
 
         int tamanho = l.getLength();
-
+        
+        /* Loop to calculate the error of the outputs using the selected function. */
         for (int i = 0; i < tamanho; i++) {
             error = (outputs[i] - l.getOutputs(i)) * layers[lastLayer].getFunction().derivative(l.getOutputs(i));
             l.setError(i, error);
@@ -123,11 +125,14 @@ public class MLP {
     private void computeHiddenLayersErrors() {
         double error;
 
+        /* First loop - Layer per layer.*/
         for (int i = layers.length - 2; i >= 0; i--) // Layer por camada 
         {
+            /* Second loop - Neuron per neuron on the layer.*/
             for (int j = 0; j < layers[i].getLength(); j++) { // Neuron por neuronio
                 error = 0;
-                // Neuron por neuronio na proxima camada
+                
+                /* Third loop - Calculate the error neuron per neuron on the next layer. */
                 for (int k = 0; k < layers[i + 1].getLength(); k++) {
                     error += layers[i + 1].getError(k) * layers[i + 1].getNeuron(k).getWeight(j);
                 }
@@ -146,9 +151,14 @@ public class MLP {
     private void computeDeltas(double[] inputs) {
         int i, j, k;
 
-        for (i = 0; i < layers.length; i++) { // Layer by Layer
-            for (j = 0; j < layers[i].getLength(); j++) { // Neuron by Neuron
-                for (k = 0; k < layers[i].getNeuron(j).getWeightLength(); k++) { // Weight by Weight
+        /*First loop - Layer by Layer. */
+        for (i = 0; i < layers.length; i++) { 
+            
+            /* Second loop - Neuron by neuron.*/
+            for (j = 0; j < layers[i].getLength(); j++) { 
+                
+                /* Third loop - Calculates the deltas weight by weight.*/
+                for (k = 0; k < layers[i].getNeuron(j).getWeightLength(); k++) { 
                     layers[i].getNeuron(j).setDeltaw(k, learningRate * inputs[k] * layers[i].getError(j)
                             + moment * layers[i].getNeuron(j).getDeltaw(k));
                 }
@@ -162,13 +172,17 @@ public class MLP {
      * Handle the corrections made on the network during the training.
      *
      */
-    private void HandleCorrections() {
+    private void handleCorrections() {
         int i, j, k;
-
+        
+        /*First loop - Layer by Layer. */
         for (i = 0; i < layers.length; i++) {
+            
+            /* Second loop - Neuron by neuron.*/
             for (j = 0; j < layers[i].getLength(); j++) {
                 Neuron n = layers[i].getNeuron(j);
-
+                
+                /* Third loop - Correct the weigths neuron by neuron, using each delta.*/
                 for (k = 0; k < n.getWeightLength(); k++) {
                     n.correctWeight(k, layers[i].getNeuron(j).getDeltaw(k));
                 }
@@ -191,19 +205,21 @@ public class MLP {
 
         Layer l = layers[lastLayer];
 
-        int tamanho = l.getLength();
+        int length = l.getLength();
 
-        for (int i = 0; i < tamanho; i++) {
+        for (int i = 0; i < length; i++) {
             error = (outputs[i] - l.getOutputs(i));
         }
+ 
         if (error < 0) {
+            /* Errors must been positive.*/
             return error * (-1);
         } else {
             return error;
         }
     }
 
-    //Retorna a saida de um neuronio especifico na camada de saida
+    /* Getters and Setters. */
     public double getOutput(int neuron) {
         return layers[lastLayer].getOutputs(neuron);
     }
